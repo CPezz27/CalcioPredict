@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Match - GoatPredictor</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/datatables.min.css') }}"
+    />
+
+    <script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        height: 100%;
+        background-color: #161616;
+        font-family: "Poppins";
+        display: flex;
+        flex-direction: column;
+      }
+      table {
+        background-color: #282828;
+        max-width: 1000px;
+        border-radius: 5px;
+        padding: 5px;
+      }
+      table.dataTable {
+        margin-bottom: 10px;
+      }
+      th,
+      td {
+        color: white; /* Modifica il colore del testo delle celle */
+        padding: 8px;
+      }
+      th {
+        font-size: 15px;
+      }
+      td {
+        font-size: 14px;
+      }
+      .stats-container {
+        display: flex;
+        flex-direction: column;
+      }
+      table.dataTable > thead > tr > th,
+      table.dataTable > thead > tr > td {
+        border-bottom: 1px solid #353535;
+      }
+      .title {
+        font-weight: 500;
+        font-size: 18px;
+        margin-top: 18px;
+        color: white;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      .result-title {
+        font-weight: 500;
+        font-size: 18px;
+        color: white;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      h2 {
+        font-weight: 500;
+        font-size: 22px;
+        margin-top: 18px;
+        color: white;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      .row {
+        display: flex;
+        flex-direction: row;
+        margin-top: 18px;
+        margin-bottom: 24px;
+        justify-content: space-evenly;
+      }
+      .method-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #282828;
+        border-radius: 5px;
+        width: 200px;
+        height: 135px;
+      }
+      .method-result {
+        text-align: center;
+        color: white;
+        font-size: 32px;
+      }
+      a {
+        margin-top: 32px;
+        text-decoration: none;
+        outline: none;
+        color: #248be5;
+        text-align: center;
+        width: 120px;
+        align-self: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Match statistics</h2>
+    <div class="row">
+      <div class="method-container">
+        <h3 class="result-title">Pred. method 1</h3>
+        <p class="method-result">{{random_forest.pred}}</p>
+      </div>
+      <div class="method-container">
+        <h3 class="result-title">Pred. method 2</h3>
+        <p class="method-result">{{dnn.pred}}</p>
+      </div>
+    </div>
+    <table id="statsTable" class="row-border">
+      <thead>
+        <tr>
+          <th>Away win chance</th>
+          <th>Away goals pred.</th>
+          <th>Draw chance</th>
+          <th>Home win chance</th>
+          <th>Home goals pred.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{strength.away_win_chance}}%</td>
+          <td>{{"{:.2f}".format(strength.away_pred)}}</td>
+          <td>{{strength.draw_chance}}%</td>
+          <td>{{strength.home_win_chance}}%</td>
+          <td>{{"{:.2f}".format(strength.home_pred)}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/home">Back to home</a>
+    <script>
+      new DataTable("#statsTable", {
+        searching: false,
+        paging: false,
+        ordering: false,
+        info: false,
+        lengthChange: false,
+      });
+    </script>
+  </body>
+</html>
