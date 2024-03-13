@@ -41,7 +41,7 @@
       }
       th,
       td {
-        color: white; /* Modifica il colore del testo delle celle */
+        color: white;
         padding: 8px;
       }
       th {
@@ -170,7 +170,7 @@
       <tbody>
         {% for team in teams %}
         <tr>
-          <td>{{"{:.2f}".format(team.points)}}</td>
+          <td>{{"{:.0f}".format(team.points)}}</td>
           <td>{{team.name}}</td>
           <td>{{team.matches}}</td>
           <td>{{team.home_goals_for}}</td>
