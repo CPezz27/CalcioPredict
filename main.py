@@ -57,17 +57,17 @@ else:
 data = pd.read_csv(file_name)
 
 # Pulizia dei dati: mantengo solo le colonne che mi interessano. In particolare abbiamo:
-# Date -> Data della partita (gg/mm/aaaa); HomeTeam -> Squadra casa; 'AwayTeam' -> Squadra ospite,
-# FTHG -> Squadra casa goal finali; FTAG -> Squadra ospite goal finali
-# FTR' -> Risultato finale (H -> casa; D -> pareggio; L -> ospite)
-# HTHG -> Squadra casa goal primo tempo; HTAG -> Squadra casa goal primo tempo
-# HTR -> Risultato primo tempo (H -> casa; D -> pareggio; L -> ospite)
-# HS -> Tiri squadra casa; AS -> Tiri squadra ospite
-# HST -> Tiri in porta casa;  AST -> Tiri in porta ospite
-# HF -> Falli commessi casa; AF -> Falli commessi ospite
-# HC -> Calci d'angolo casa; AC -> Calci d'angolo ospite
-# HY -> Cartellini gialli casa; AY -> Cartellini gialli ospite
-# HR -> Cartellini rossi casa; AR ->Cartellini rossi ospite
+# Date -> Data della partita (gg/mm/aaaa); HomeTeam -> Squadra casa; 'AwayTeam' -> Squadra ospite;
+# FTHG -> Squadra casa goal finali; FTAG -> Squadra ospite goal finali;
+# FTR' -> Risultato finale (H -> casa; D -> pareggio; A -> ospite);
+# HTHG -> Squadra casa goal primo tempo; HTAG -> Squadra casa goal primo tempo;
+# HTR -> Risultato primo tempo (H -> casa; D -> pareggio; A -> ospite);
+# HS -> Tiri squadra casa; AS -> Tiri squadra ospite;
+# HST -> Tiri in porta casa;  AST -> Tiri in porta ospite;
+# HF -> Falli commessi casa; AF -> Falli commessi ospite;
+# HC -> Calci d'angolo casa; AC -> Calci d'angolo ospite;
+# HY -> Cartellini gialli casa; AY -> Cartellini gialli ospite;
+# HR -> Cartellini rossi casa; AR ->Cartellini rossi ospite;
 
 data = data[['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'HTHG', 'HTAG', 'HTR', 'HS', 'AS',
              'HST', 'AST', 'HF', 'AF', 'HC', 'AC', 'HY', 'AY', 'HR', 'AR']]
