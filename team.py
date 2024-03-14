@@ -1,4 +1,4 @@
-
+import numpy
 
 
 class Team:
@@ -52,3 +52,26 @@ class Team:
         # Media dei goal complessivi per le partite
         self.average_goals_away = 0
         self.average_goals_home = 0
+
+    def get_stats(self):
+        stats = (f"Team: {self.name}\n"
+                 f"Points: {self.points}\n"
+                 f"Matches Played: {self.matches}\n"
+                 f"Matches Wins: {self.home_wins + self.away_wins}\n"
+                 f"Matches Loss: {self.home_losses + self.away_losses}\n"
+                 f"Matches Draws: {self.home_draws + self.away_draws}\n"
+                 f"Total Goals Scored (Full Time): {self.home_goals_for + self.away_goals_for}\n"
+                 f"Total Goals Conceded (Full Time): {self.home_goals_against + self.away_goals_against}\n"
+                 f"Total Shots (Home): {self.home_shots}\n"
+                 f"Total Shots (Away): {self.away_shots}\n"
+                 f"Shots on Target (Home): {self.home_shots_target}\n"
+                 f"Shots on Target (Away): {self.away_shots_target}\n"
+                 f"Total Fouls Committed (Home): {self.home_fouls_committed}\n"
+                 f"Total Fouls Committed (Away): {self.away_fouls_committed}\n"
+                 f"Total Corners (Home): {self.home_total_corners}\n"
+                 f"Total Corners (Away): {self.away_total_corners}\n"
+                 f"Total Yellow Cards (Home): {self.home_yellow_cards}\n"
+                 f"Total Yellow Cards (Away): {self.away_yellow_cards}\n"
+                 f"Total Red Cards (Home): {self.home_red_cards}\n"
+                 f"Total Red Cards (Away): {self.away_red_cards}")
+        return stats
