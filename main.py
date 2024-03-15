@@ -258,13 +258,13 @@ def match():
 
     strength_response = requests.get(
         f"{request.url_root}/api/v1/strength-predictor?homeTeam={homeTeamToPredict}&awayTeam={awayTeamToPredict}")
-    random_forest_response = requests.get(
+    voting_classifier_response = requests.get(
         f"{request.url_root}/api/v1/voting-classifier?homeTeam={homeTeamToPredict}&awayTeam={awayTeamToPredict}")
 
     data_strength = strength_response.json()
-    data_random_forest = random_forest_response.json()
+    data_voting_classifier = voting_classifier_response.json()
 
-    return render_template('match.html', strength=data_strength, random_forest=data_random_forest)
+    return render_template('match.html', strength=data_strength, voting_classifier=data_voting_classifier)
 
 
 @app.route('/api/v1/strength-predictor', methods=['GET'])
