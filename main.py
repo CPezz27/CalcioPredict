@@ -113,7 +113,7 @@ for team in tqdm(teams):
     t.away_yellow_cards = matches[matches['AwayTeam'] == team]['AY'].sum()
     t.away_red_cards = matches[matches['AwayTeam'] == team]['AR'].sum()
 
-    t.points = ((t.home_wins + t.away_wins) * 3 + (t.home_draws + t.away_draws) * 1) * 0.8
+    t.points = ((t.home_wins + t.away_wins) * 3 + (t.home_draws + t.away_draws) * 1)
 
     t.average_goals_away = t.home_matches / t.home_goals_for
     t.average_goals_home = t.away_matches / t.away_goals_for
@@ -140,7 +140,6 @@ for idx, row in tqdm(data.iterrows()):
     home_team = row['HomeTeam']
     away_team = row['AwayTeam']
 
-    # home
     h_home_goals_for = data.loc[data['HomeTeam'] == home_team].loc[:idx, 'FTHG'].sum()
     h_home_goals_against = data.loc[data['HomeTeam'] == home_team].loc[:idx, 'FTAG'].sum()
     h_home_shots_target = data.loc[data['HomeTeam'] == home_team].loc[:idx, 'HST'].sum()
@@ -155,7 +154,6 @@ for idx, row in tqdm(data.iterrows()):
     h_away_shots = data.loc[data['AwayTeam'] == home_team].loc[:idx, 'AS'].sum()
     h_away_fouls_committed = data.loc[data['AwayTeam'] == home_team].loc[:idx, 'AF'].sum()
 
-    # away
     a_home_goals_for = data.loc[data['HomeTeam'] == away_team].loc[:idx, 'FTHG'].sum()
     a_home_goals_against = data.loc[data['HomeTeam'] == away_team].loc[:idx, 'FTAG'].sum()
     a_home_shots_target = data.loc[data['HomeTeam'] == away_team].loc[:idx, 'HST'].sum()
@@ -204,7 +202,7 @@ for idx, row in tqdm(data.iterrows()):
 
 print("")
 
-# Creare un DataFrame dai valori raccolti
+# Utilizziamo il DataFrame precedentemente creato per aggiungere i valori ottenuti dal precedente for
 new_data = pd.concat([new_data, pd.DataFrame(rows_to_add)], ignore_index=True)
 
 input_filter = ['HomeTeam', 'h_home_goals_for', 'h_away_goals_for', 'h_home_goals_against',
