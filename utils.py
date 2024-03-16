@@ -12,69 +12,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
 
 
-def train_classifier(clf, X_train, y_train):
-    start = time()
-    clf.fit(X_train, y_train)
-    end = time()
-    print("Model trained in {:2f} seconds".format(end - start))
-
-
-def predict_labels(clf, features, target):
-    start = time()
-    y_pred = clf.predict(features)
-    end = time()
-    print("Made Predictions in {:2f} seconds".format(end - start))
-
-    acc = accuracy_score(target, y_pred)
-
-    return f1_score(target, y_pred, average='micro'), acc
-
-
-def model(clf, X_train, y_train, X_test, y_test):
-    train_classifier(clf, X_train, y_train)
-
-    f1, acc = predict_labels(clf, X_train, y_train)
-    print("\nTraining Info:")
-    print("-" * 20)
-    print("F1 Score:{}".format(f1))
-    print("Accuracy:{}".format(acc))
-
-    f1, acc = predict_labels(clf, X_test, y_test)
-    print("\nTest Metrics:")
-    print("-" * 20)
-    print("F1 Score:{}".format(f1))
-    print("Accuracy:{}".format(acc))
-
-
-def home_team_goal_prob(n, home_team_poisson):
-    goals = sum(1 for goal in home_team_poisson if goal == n)
-    prob = goals / len(home_team_poisson)
-    return prob, goals
-
-
-def away_team_goal_prob(n, away_team_poisson):
-    goals = sum(1 for goal in away_team_poisson if goal == n)
-    prob = goals / len(away_team_poisson)
-    return prob, goals
-
-
-def printDiagonalSums(mat, n):
-    principal = 0
-    secondary = 0
-    for i in range(0, n):
-        for j in range(0, n):
-
-            # Condition for principal diagonal
-            if i == j:
-                principal += mat[i][j]
-
-            # Condition for secondary diagonal
-            if (i + j) == (n - 1):
-                secondary += mat[i][j]
-
-    return principal
-
-
 def poisson_probability(lam, k):
     return (lam**k * math.exp(-lam)) / math.factorial(k)
 

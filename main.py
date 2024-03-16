@@ -300,7 +300,6 @@ def strengthPredictor():
     homeTeamPredict = homeTeamAttack * awayTeamDefense * mean_home_average_goals_for
     awayTeamPredict = awayTeamAttack * homeTeamDefense * mean_away_average_goals_for
 
-    # parte nuova
     home_goals = [poisson_probability(homeTeamPredict, i) for i in range(10)]
     away_goals = [poisson_probability(awayTeamPredict, i) for i in range(10)]
 
